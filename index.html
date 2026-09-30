@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodShare - Share Food. Reduce Waste. Feed Communities.</title>
+  <meta name="description" content="A Smart Surplus Food Redistribution system connecting restaurants, hotels, colleges, and individuals with local NGOs and volunteers to eliminate hunger and food waste.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js CDN for Impact Dashboard Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-100 selection:text-emerald-900">
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-3 max-w-sm pointer-events-none"></div>
+
+  <!-- Main App Shell -->
+  <div id="app" class="flex-grow flex flex-col">
+    <!-- Content dynamically rendered by app.js -->
+  </div>
+
+  <!-- Notification Drawer Backdrop & Panel -->
+  <div id="notification-backdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 hidden transition-opacity" onclick="toggleNotificationDrawer()"></div>
+  <aside id="notification-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-emerald-50/50">
+      <div class="flex items-center gap-2">
+        <i data-lucide="bell" class="w-5 h-5 text-emerald-600"></i>
+        <h3 class="font-bold text-slate-800 font-heading">Notifications</h3>
+        <span id="notif-count-pill" class="text-xs bg-emerald-600 text-white font-semibold px-2 py-0.5 rounded-full">0</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="markAllNotificationsAsRead()" class="text-xs text-emerald-700 hover:text-emerald-800 font-medium px-2 py-1 rounded hover:bg-emerald-100 transition">Mark all read</button>
+        <button onclick="toggleNotificationDrawer()" class="p-1 rounded-lg hover:bg-slate-200 text-slate-500 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+    <div id="notification-list" class="flex-1 overflow-y-auto divide-y divide-slate-100 p-2">
+      <!-- Dynamic notifications inserted here -->
+    </div>
+    <div class="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between text-xs text-slate-500">
+      <span>Auto-updates in real time</span>
+      <button onclick="simulateDemoNotification()" class="text-emerald-700 font-medium hover:underline flex items-center gap-1">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Test Alert
+      </button>
+    </div>
+  </aside>
+
+  <!-- Core App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
